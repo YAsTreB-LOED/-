@@ -1,0 +1,50 @@
+import random
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Олимп и Шотики")
+font = pygame.font.Font(None, 36)
+BLACK = (0, 0, 0) #цвет фона
+
+
+def show_text(text, y_offset=0): #добавили y_offset для вертикального смещения
+    """Отображает текст на экране, предотвращая наложение."""
+    screen.fill(BLACK) # Очищаем экран перед отображением нового текста
+    text_surface = font.render(text, True, (255, 255, 255))
+    text_rect = text_surface.get_rect(topleft=(50, 50 + y_offset)) #рассчитываем позицию
+    screen.blit(text_surface, text_rect)
+    pygame.display.flip()
+    pygame.time.wait(2000)
+
+
+def game():
+    characters = {"Зевс": 0, "Посейдон": 0, "Афина": 0}
+    story = [
+        "Вы на Олимпе. Перед вами три божества: Зевс, Посейдон и Афина.",
+        "Каждый предлагает вам шотик.",
+        "Кто предложит самый сильный шотик? (случайным образом)"
+    ]
+    y_offset = 0 # переменная для вертикального смещения
+    for line in story:
+        show_text(line, y_offset)
+        y_offset += 40 # увеличиваем смещение на высоту строки (примерно 40 пикселей)
+
+    winner = random.choice(list(characters.keys()))
+    characters[winner] = 1
+    show_text(f"Победил {winner}! Его шотик самый крепкий!", y_offset)
+    y_offset += 40
+
+    if winner == "Зевс":
+        show_text("Зевс доволен. Он дарит вам молнию.", y_offset)
+    elif winner == "Посейдон":
+        show_text("Посейдон доволен. Он дарит вам трезубец.", y_offset)
+    elif winner == "Афина":
+        show_text("Афина довольна. Она дарит вам мудрость.", y_offset)
+
+    pygame.time.wait(3000) # пауза в конце игры
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    game()
