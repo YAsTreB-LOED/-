@@ -1,0 +1,50 @@
+import random
+import pygame
+
+# Инициализация Pygame (пока только для текста, вам нужно будет добавить графику)
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Олимп и Шотики")
+font = pygame.font.Font(None, 36) # Выберите шрифт
+
+
+def show_text(text):
+    """Отображает текст на экране."""
+    text_surface = font.render(text, True, (255, 255, 255))
+    screen.blit(text_surface, (50, 50))
+    pygame.display.flip()
+    pygame.time.wait(2000) # Задержка в 2 секунды
+
+
+def game():
+    """Основная функция игры."""
+    characters = {"Зевс": 0, "Посейдон": 0, "Афина": 0}
+    story = [
+        "Вы на Олимпе. Перед вами три божества: Зевс, Посейдон и Афина.",
+        "Каждый предлагает вам шотик.",
+        "Кто предложит самый сильный шотик? (случайным образом)"
+    ]
+
+    for line in story:
+        show_text(line)
+
+    # Случайный выбор победителя
+    winner = random.choice(list(characters.keys()))
+    characters[winner] = 1
+
+    result = f"Победил {winner}! Его шотик самый крепкий!"
+    show_text(result)
+
+    # Дальнейшее развитие сюжета (нужно добавить больше вариантов)
+    if winner == "Зевс":
+        show_text("Зевс доволен. Он дарит вам молнию.")
+    elif winner == "Посейдон":
+        show_text("Посейдон доволен. Он дарит вам трезубец.")
+    elif winner == "Афина":
+        show_text("Афина довольна. Она дарит вам мудрость.")
+
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    game()
