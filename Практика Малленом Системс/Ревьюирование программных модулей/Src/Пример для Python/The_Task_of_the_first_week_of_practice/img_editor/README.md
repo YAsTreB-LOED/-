@@ -20,7 +20,7 @@
 - Python 3.8+
 - Pillow
 - PyQt6
-- pytest>=7.0 (для тестов)
+- pytest (для тестов)
 
 ## Установка
 1. `pip install -r requirements.txt`
