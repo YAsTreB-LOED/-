@@ -21,11 +21,10 @@
 - Pillow
 - PyQt6
 - pytest (для тестов)
-
-Установка и запуск: 
-1. `pip install -r requirements.txt`
-2. `python main.py`
-- Запуск тестов: `pytest -v`
+ 
+1. Установка: `pip install -r requirements.txt`
+2. Запуск: `python main.py`
+3. Запуск тестов: `pytest -v`
 
 ## Документация
 ### UML-диаграмма
