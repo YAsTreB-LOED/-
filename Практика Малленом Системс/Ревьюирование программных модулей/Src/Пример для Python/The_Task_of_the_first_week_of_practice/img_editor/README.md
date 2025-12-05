@@ -22,12 +22,9 @@
 - PyQt6
 - pytest (для тестов)
 
-# Установка:
-1. `pip install -r requirements.txt`
-# Запуск:
-2. `python main.py`
-# Запуск тестов:
-3. `pytest -v`
+Установка: `pip install -r requirements.txt`
+Запуск: `python main.py`
+Запуск тестов: `pytest -v`
 
 ## Документация
 ### UML-диаграмма
