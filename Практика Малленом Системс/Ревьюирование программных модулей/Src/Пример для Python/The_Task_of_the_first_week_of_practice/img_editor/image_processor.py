@@ -55,7 +55,7 @@ class ImageProcessor:
         return {
             "width": w,
             "height": h,
-            "format": self.original_format  # ← теперь правильно
+            "format": self.original_format
         }
 
     def adjust_brightness(self, factor: float):

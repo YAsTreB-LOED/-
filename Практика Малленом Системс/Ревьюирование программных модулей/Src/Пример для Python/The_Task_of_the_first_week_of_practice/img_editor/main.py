@@ -124,7 +124,7 @@ class ImageEditor(QMainWindow):
         left.addWidget(info)
         left.addStretch()
 
-        # Правое место под изображение
+        # Изображение
         self.image_label = QLabel("Перетащите изображение или нажмите «Загрузить»")
         self.image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.image_label.setStyleSheet("background: white; border: 1px solid #cccccc;")

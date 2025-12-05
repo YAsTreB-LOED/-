@@ -3,7 +3,7 @@ import pytest
 import sys
 from pathlib import Path
 
-# Добавляем корень проекта в путь — теперь импорт работает всегда
+# Добавляем корень проекта в путь
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from image_processor import ImageProcessor
@@ -50,7 +50,7 @@ def test_adjust_contrast(processor, temp_image):
     before = processor.current_image.getpixel((50, 50))
     processor.adjust_contrast(3.0)
     after = processor.current_image.getpixel((50, 50))
-    assert before != after  # контраст применился!
+    assert before != after
 
 
 def test_resize(processor, temp_image):
@@ -79,4 +79,4 @@ def test_save_image(processor, temp_image):
     with Image.open(output_path) as img:
         assert img.size == (100, 100)
 
-    output_path.unlink()  # удаляем
+    output_path.unlink()
