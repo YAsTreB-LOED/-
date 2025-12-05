@@ -24,8 +24,10 @@
 
 Установка:
 1. `pip install -r requirements.txt`
+
 Запуск:
 2. `python main.py`
+
 Запуск тестов:
 3. `pytest -v`
 
