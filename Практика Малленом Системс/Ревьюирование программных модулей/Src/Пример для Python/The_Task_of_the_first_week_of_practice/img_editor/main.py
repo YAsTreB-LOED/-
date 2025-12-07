@@ -31,7 +31,7 @@ logger = logging.getLogger("ImageEditor")
 class ImageEditor(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Утилита работы с изображениями, практикант: ФИО")
+        self.setWindowTitle("Игнатьев Ярослав Николаевич")
         self.setMinimumSize(1000, 600)
 
         # Настройки приложения
