@@ -1,0 +1,58 @@
+@startuml
+' Диаграмма последовательности: Применение изменений (яркость + контраст + размер)
+
+actor Пользователь
+participant "ImageEditor\n(main.py)" as UI
+participant "ImageProcessor\n(image_processor.py)" as Proc
+participant "Pillow (PIL)" as PIL
+participant "QLabel (предпросмотр)" as QLabel
+
+Пользователь -> UI: Перетаскивает слайдер яркости/контраста\nили меняет размер
+activate UI
+
+UI -> UI: schedule_update() → таймер 150 мс
+UI -> Proc: reset()
+activate Proc
+Proc -> Proc: current_image = original_image.copy()
+deactivate Proc
+
+alt Яркость ≠ 100
+    UI -> Proc: adjust_brightness(factor)
+    activate Proc
+    Proc -> PIL: ImageEnhance.Brightness(image).enhance(factor)
+    PIL --> Proc: новое изображение
+    Proc -> Proc: current_image = новое
+    Proc -> Proc: _log_action("brightness", ...)
+    deactivate Proc
+end
+
+alt Контраст ≠ 100
+    UI -> Proc: adjust_contrast(factor)
+    activate Proc
+    Proc -> PIL: ImageEnhance.Contrast(image).enhance(factor)
+    PIL --> Proc: новое изображение
+    deactivate Proc
+end
+
+alt Размер отличается
+    UI -> Proc: resize(width, height)
+    activate Proc
+    Proc -> PIL: image.resize((w,h), LANCZOS)
+    PIL --> Proc: новое изображение
+    deactivate Proc
+end
+
+UI -> UI: display_current_image()
+UI -> Proc: current_image.save("output/temp_preview.jpg")
+UI -> QLabel: setPixmap(масштабированное изображение)
+
+QLabel --> Пользователь: Обновлённый предпросмотр
+
+deactivate UI
+
+note right of Proc
+    Все действия логируются в history.json
+    и app.log
+end note
+
+@enduml

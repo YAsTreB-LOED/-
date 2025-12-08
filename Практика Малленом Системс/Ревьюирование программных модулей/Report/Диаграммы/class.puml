@@ -1,0 +1,29 @@
+@startuml
+class ImageProcessor {
+    -original_image: Image
+    -current_image: Image
+    -history: list
+    +load_image(path)
+    +adjust_brightness(factor)
+    +adjust_contrast(factor)
+    +resize(w, h)
+    +reset()
+    +save(path)
+    +get_info()
+}
+
+class ImageEditor {
+    -processor: ImageProcessor
+    -brightness: QSlider
+    -contrast: QSlider
+    -w_spin, h_spin: QSpinBox
+    +load_image()
+    +apply_all_changes()
+    +display_current_image()
+    +schedule_update()
+}
+
+ImageEditor --> ImageProcessor : использует
+ImageProcessor --> PIL.Image
+ImageEditor --> QLabel
+@enduml
