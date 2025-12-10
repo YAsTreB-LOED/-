@@ -1,0 +1,13 @@
+@startuml
+component "UI Module (main.py)" as UI {
+  port "Interface"
+}
+component "Processing Module (image_processor.py)" as Proc {
+  port "API"
+}
+component "Pillow Library" as PIL
+component "PyQt6" as Qt
+UI --> Proc : uses
+Proc --> PIL : depends
+UI --> Qt : depends
+@enduml

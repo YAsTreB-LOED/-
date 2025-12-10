@@ -1,0 +1,18 @@
+@startuml
+actor User
+participant UI as "ImageEditor"
+participant Proc as "ImageProcessor"
+User -> UI: Изменить слайдер (яркость)
+activate UI
+UI -> Proc: reset()
+activate Proc
+Proc --> UI: current_image
+deactivate Proc
+UI -> Proc: adjust_brightness(factor)
+activate Proc
+Proc --> UI: updated_image
+deactivate Proc
+UI -> UI: display_current_image()
+UI --> User: Предпросмотр
+deactivate UI
+@enduml
